@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{user.username}}{% endblock title %}
+{% block content %}
+{% include 'wigits/_pagesbaner.html' %}
+{% load static %}
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="{% url 'myapp:index' %}">Home</a>
+    </li>
+    <li class="breadcrumb-item active">User Profile</li>
+    <li class="breadcrumb-item active">{{user.username}}</li>
+</ol>
+<!---->
+<!-- banner -->
+<section class="ab-info-main py-md-5 py-4">
+    <div class="container py-md-3">
+
+        <div class="row">
+
+            <!-- block left -->
+            {% include 'wigits/_sidebar.html' %}
+
+            <!-- //block left -->
+            <!-- block right -->
+
+            <div class="side-bar col-lg-9">
+                <div class="card">
+                    <span class="card-body"><strong>Address</strong></span>
+                    {% if address %}
+                    {% for add in address %}
+                    <hr>
+
+                    <div class="card-body">
+                        <span> <strong> Name : {{add.name}}</strong></span>
+                        <div>
+                            {{add.Address}}
+                            {{add.city}}
+                            {{add.state}} -
+                            {{add.pincode}}
+                        </div>
+                        <br>
+                        <a href="{% url 'myapp:address_update' add.pk%}" class="btn btn-success shadow px-3 py-1 ms-4">Edit</a>
+                        <a href="{% url 'myapp:address_delete' add.pk%}" class="btn btn-danger shadow px-3 py-1 ms-4">Remove</a>
+                    </div>
+                    {% endfor %}
+                    {% else %}
+                    <span class="card-body">
+                        <p> No address at present please add new address! </p>
+                    </span>
+                    {% endif %}
+
+                    <div class="card-body">
+                        <div class="col-md-12">
+                            {% if address.has_other_pages %}
+                            <ul class="pagination">
+                                {% if address.has_previous %}
+                                <li class="page-item">
+                                    <a href="?page={{address.previous_page_number}}" class="page-link">&laquo;</a>
+                                </li>
+                                {% else %}
+                                <li class="page-tem disabled">
+                                    <a class="page-link">&laquo;</a>
+                                </li>
+                                {% endif %}
+                                {% for i in address.paginator.page_range %}
+                                {% if address.number == i %}
+                                <li class="page-item active">
+                                    <a class="page-link">{{i}}</a>
+                                </li>
+                                {% else %}
+                                <li class="page-item">
+                                    <a href="?page={{i}}" class="page-link">{{i}}</a>
+                                </li>
+                                {% endif %}
+                                {% endfor %}
+                                {% if address.has_next %}
+                                <li class="page-item">
+                                    <a href="?page={{address.next_page_number}}" class="page-link">&raquo;</a>
+                                </li>
+                                {% else %}
+                                <li class="page-tem disabled">
+                                    <a class="page-link">&raquo;</a>
+                                </li>
+                                {% endif %}
+                            </ul>
+                            {% endif %}
+                        </div>
+
+                    </div>
+                </div>
+                <br>
+                <div class="card">
+                    <span class="card-body"><strong>Add New Address</strong></span>
+                    <hr>
+                    <div class="card-body">
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            <div class="form-group col-lg-9 mb-3">
+                                {% for fm in form %}
+                                {{fm.label_tag}} {{fm}}
+                                <small class="text-danger">{{fm.errors | striptags}}</small>
+                                {% endfor %}
+                            </div>
+                            <div class="col-lg-9 mb-3">
+                                <input type="submit" value="Save" class="btn btn-primary btn-block">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </div>
+</section>
+
+
+{% endblock content %}

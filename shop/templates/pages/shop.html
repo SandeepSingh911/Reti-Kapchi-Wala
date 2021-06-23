@@ -1,0 +1,252 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Shop{% endblock title %}
+{% block content %}
+{% include 'wigits/_pagesbaner.html' %}
+
+    <!--//main-content-->
+    <!---->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href=" {% url 'myapp:index' %}">Home</a>
+        </li>
+        <li class="breadcrumb-item active">Shop</li>
+    </ol>
+    <!---->
+    <!-- banner -->
+    <section class="ab-info-main py-md-5 py-4">
+        <div class="container py-md-3">
+            <!-- top Products -->
+           
+            <div class="row">
+
+         <!-- product left -->
+                <div class="side-bar col-lg-3">
+
+                    <div class="search-bar w3layouts-newsletter">
+                        <h3 class="sear-head">Search Here..</h3>
+                        <form action="{% url 'myapp:search' %}" class="d-flex">
+                            <input type="search" placeholder="Product name..." name="keywords" class="form-control" required="">
+                            <button class="btn1" type="submit"><span class="fa fa-search" aria-hidden="true"></span></button>
+                        </form>
+                    </div>
+                    <!--preference -->
+                    <div class="left-side my-3">
+                        <h3 class="sear-head">Filter By Categories</h3>
+                        <ul class="w3layouts-box-list">
+                            <li class="btn btn-light zoom"><a href="{% url 'myapp:shop' %}">
+                                <span class="span">All</span>
+                                </a>
+                            </li>
+                            <li class="btn btn-light zoom"><a href="{% url 'myapp:cement' %}">
+                                <span class="span">cement</span>
+                                </a>
+                            </li>
+                            <li class="btn btn-light zoom"><a href="{% url 'myapp:structural_steel' %}">
+                                <span class="span">structural steel</span>
+                                </a>
+                            </li>
+                            <li class="btn btn-light zoom"><a href="{% url 'myapp:reinforcement_steel' %}">
+                                <span class="span">reinforcement steel</span>
+                                </a>
+                            </li>
+                            <li class="btn btn-light zoom"><a href="{% url 'myapp:bitumen' %}">
+                                <span class="span">bitumen</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- // preference -->
+                    <!--price -->
+                    <div class="left-side my-3">
+                        <h3 class="sear-head">Filter By Price</h3>
+                        <p>Range</p>
+                        <ul class="w3layouts-box-list">
+                            <li class="btn btn-light zoom"><a href="{% url 'myapp:Price0to500' %}">
+                                <span class="span">0 - 500</span>
+                                </a>
+                            </li>
+                            <li class="btn btn-light zoom"><a href="{% url 'myapp:Price500to1000' %}">
+                                <span class="span">500 - 1000</span>
+                                </a>
+                            </li>
+                            <li class="btn btn-light zoom"><a href="{% url 'myapp:Price1000to5000' %}">
+                                <span class="span">1000 - 5000 </span>
+                                </a>
+                            </li>
+                            <li class="btn btn-light zoom"><a href="{% url 'myapp:Price5000to10000' %}">
+                                <span class="span">5000 - 10000</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- // price -->
+                </div>
+                <!-- //product left -->
+                <div class="left-ads-display col-lg-8">
+                    <div class="row">
+                        {% for product in products %}
+                            <div class="col-md-4 product-men my-lg-4">
+                                <div class="product-shoe-info shoe text-center zoom">
+                                    <div class="men-thumb-item">
+                                        <a href="{% url 'myapp:detail_product' product.pk %}">
+                                            <img src="{{product.image.url}}" class="img-fluid" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="item-info-product">
+                                        <h4>
+                                            <a href="{% url 'myapp:detail_product' product.pk %}">{{product.name}} </a>
+                                        </h4>
+
+                                        <div class="product_price">
+                                            <div class="grid-price">
+                                               <span  style=" text-decoration: line-through;"><p>₹ {{product.selling_price}}</p></span>	
+                                                <span class="money">₹ {{product.discounted_price}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %} 
+                    </div>    
+                </div>
+
+            <!------------------------------------------------------------------------------------------>
+                <!-- product cement --> <!--
+                <div class="left-ads-display col-lg-8">
+                    <div class="row">
+                        {% for product in cement_product %}
+                            <div class="col-md-3 product-men my-lg-3">
+                                <div class="product-shoe-info shoe text-center">
+                                    <div class="men-thumb-item">
+                                        <a href="{% url 'myapp:detail_product' product.pk %}">
+                                            <img src="{{product.image.url}}" class="img-fluid" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="item-info-product">
+                                        <h4>
+                                            <a href="{% url 'myapp:detail_product' product.pk %}">{{product.name}} </a>
+                                        </h4>
+
+                                        <div class="product_price">
+                                            <div class="grid-price">
+                                               <span  style=" text-decoration: line-through;"><p>₹ {{product.selling_price}}</p></span>	
+                                                <span class="money">₹ {{product.discounted_price}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %} 
+                    </div>    
+                </div>
+                <!-- cement end-->
+                <!--
+                <!-- structural_steel--> <!--
+                <div class="left-ads-display col-lg-12">
+                     <hr>
+                    <h3 class="sear-head">structural steel</h3>
+                     <hr>
+                    <div class="row">
+                        {% for product in structural_steel %}
+                            <div class="col-md-3 product-men my-lg-3">
+                                <div class="product-shoe-info shoe text-center">
+                                    <div class="men-thumb-item">
+                                        <a href="{% url 'myapp:detail_product' product.pk %}">
+                                            <img src="{{product.image.url}}" class="img-fluid" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="item-info-product">
+                                        <h4>
+                                            <a href="{% url 'myapp:detail_product' product.pk %}">{{product.name}} </a>
+                                        </h4>
+
+                                        <div class="product_price">
+                                            <div class="grid-price">
+                                               <span  style=" text-decoration: line-through;"><p>₹ {{product.selling_price}}</p></span>	
+                                                <span class="money">₹ {{product.discounted_price}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %} 
+                    </div>    
+                </div>
+                <!-- structural_steel end-->
+                <!-- reinforcement_steel--> <!--
+                <div class="left-ads-display col-lg-12">
+                     <hr>
+                    <h3 class="sear-head">reinforcement steel</h3>
+                     <hr>
+                    <div class="row">
+                        {% for product in reinforcement_steel %}
+                            <div class="col-md-3 product-men my-lg-3">
+                                <div class="product-shoe-info shoe text-center">
+                                    <div class="men-thumb-item">
+                                        <a href="{% url 'myapp:detail_product' product.pk %}">
+                                            <img src="{{product.image.url}}" class="img-fluid" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="item-info-product">
+                                        <h4>
+                                            <a href="{% url 'myapp:detail_product' product.pk %}">{{product.name}} </a>
+                                        </h4>
+
+                                        <div class="product_price">
+                                            <div class="grid-price">
+                                               <span  style=" text-decoration: line-through;"><p>₹ {{product.selling_price}}</p></span>	
+                                                <span class="money">₹ {{product.discounted_price}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %} 
+                    </div>    
+                </div>
+                <!-- reinforcement_steel end-->
+                 <!-- bitumen--> <!--
+                <div class="left-ads-display col-lg-12">
+                     <hr>
+                    <h3 class="sear-head">bitumen</h3>
+                     <hr>
+                    <div class="row">
+                        {% for product in bitumen %}
+                            <div class="col-md-3 product-men my-lg-3">
+                                <div class="product-shoe-info shoe text-center">
+                                    <div class="men-thumb-item">
+                                        <a href="{% url 'myapp:detail_product' product.pk %}">
+                                            <img src="{{product.image.url}}" class="img-fluid" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="item-info-product">
+                                        <h4>
+                                            <a href="{% url 'myapp:detail_product' product.pk %}">{{product.name}} </a>
+                                        </h4>
+
+                                        <div class="product_price">
+                                            <div class="grid-price">
+                                               <span  style=" text-decoration: line-through;"><p>₹ {{product.selling_price}}</p></span>	
+                                                <span class="money">₹ {{product.discounted_price}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %} 
+                    </div>    
+                </div> -->
+                <!-- bitumen end--> 
+               
+                
+               
+               
+                
+            </div>
+        </div>
+    </section>
+    <!-- //contact -->
+  
+
+{% endblock content %}

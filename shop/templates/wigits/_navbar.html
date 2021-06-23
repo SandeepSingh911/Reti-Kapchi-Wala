@@ -1,0 +1,78 @@
+{% load static %}
+    <nav class="py-4">
+                    <div id="logo">
+                        <h1> <a href="{% url 'myapp:index' %}"><span 
+                                    aria-hidden="true"></span>Reti Khapchi Wala</a></h1>
+                    </div>
+
+                    <label for="drop" class="toggle">Menu</label>
+                    <input type="checkbox" id="drop" />
+                    <ul class="menu mt-2">                    
+                        <li 
+                            {% if '/' == request.path %}
+                                class="active"
+                            {% endif %}>
+                            <a href="{% url 'myapp:index' %}">Home</a>
+                        </li>
+
+                        <li
+                            {% if 'about' in request.path %}
+                                class="active"
+                            {% endif %}>
+                            <a href="{% url 'myapp:about' %}">About</a>
+                        </li>
+                        <li
+                            {% if 'shop' in request.path %}
+                                class="active"
+                            {% endif %}>
+                            <a href="{% url 'myapp:shop' %}">Shop</a>
+                        </li>
+                        <li
+                            {% if 'contact' in request.path %}
+                                class="active"
+                            {% endif %}>
+                            <a href="{% url 'contact' %}">Contact</a>
+                        </li>
+
+
+                        {% if request.user.is_authenticated %}
+                        <li
+                            {% if 'cart' in request.path %}
+                                class="active"
+                            {% endif %}>
+                            <a href="{% url 'myapp:cart' %}"><i class="fas fa-shopping-cart"> cart</a></i></li>
+
+                        <li
+                            {% if 'profile' in request.path %}
+                                class="active"
+                            {% endif %}>
+                            <a href="{% url 'myapp:profile' %}"><i class="fas fa-user"></i> {{user.username}} </a>
+                        </li>
+                        
+                        {% else %}
+                         <li
+                            {% if 'login' in request.path %}
+                                class="active"
+                            {% endif %}>
+                            <a href="{% url 'myapp:login' %}">Login</a>
+                        </li>
+                        <li
+                            {% if 'register' in request.path %}
+                                class="active"
+                            {% endif %}>
+                            <a href="{% url 'myapp:registratiion' %}">Register</a>
+                        </li>
+                        
+                        {% endif %}
+
+                        {% if request.user.is_superuser %}
+                        <li
+                            {% if 'orders' in request.path %}
+                                class="active"
+                            {% endif %}>
+                            <a href="{% url 'myapp:order_list' %}">Manage orders</a>
+                        </li>
+                        {% endif %}
+                        
+                    </ul>
+                </nav>

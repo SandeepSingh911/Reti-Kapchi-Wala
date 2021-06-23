@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{user.username}}-wishlist{% endblock title %}
+{% block content %}
+{% include 'wigits/_pagesbaner.html' %}
+{% load static %}
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="{% url 'myapp:index' %}">Home</a>
+    </li>
+    <li class="breadcrumb-item active">
+        <a href="{% url 'myapp:profile' %}">{{user.username}}</a>
+    </li>
+
+    <li class="breadcrumb-item active">Wish List</li>
+</ol>
+<!---->
+<!-- banner -->
+<section class="ab-info-main py-md-5 py-4">
+    <div class="container py-md-3">
+        <!-- top Products -->
+        <div class="row">
+            <!-- product left -->
+            {% include 'wigits/_sidebar.html' %}
+            <div class="side-bar col-lg-9">
+                <div class="card">
+                    <div class="card-body">
+                        <h4>My Wishlist</h4>
+                        <div id="product-display">
+                            {% for item in wishlist %}
+                            <hr id="product-hr{{item.product.id}}">
+                            <div class=" row" id="product-row{{item.product.id}}">
+                                <div class="col-sm-3 text-center align-self-center">
+                                    <img src="{{item.product.image.url}}" alt="" srcset=""
+                                        class="img-fluid img-thumbnail shadow-sm" height="150" width="150">
+                                </div>
+                                <div class="col-sm-9">
+                                    <div>
+                                        <h5>{{item.product.name}}</h5>
+                                        <p class="mb-2 text-muted small">Description: Lorem ipsum dolor sit amet
+                                            consectetur adipisicing elit. Rerum quas, nihil vel velit sed, quos
+                                            consequatur maiores odio libero eius est in mollitia quo minus dolorum culpa
+                                            consectetur, ipsam unde!</p>
+                                        <div class="d-flex justify-content-between">
+                                            <a class="remove-wishlist btn btn-sm btn-secondary mr-3"
+                                                onClick="removeitem({{item.product.id}})">Remove item </a>
+                                            <p class="mb-0"><span><strong>₹
+                                                        {{item.product.discounted_price}}</strong></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            <hr class="text-muted">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+{% block javascript %}
+<script>
+    function removeitem(id) {
+        $.ajax({
+            url: '{% url "myapp:remove_wishlist" %}',
+            data: {
+                id: id
+            },
+            dataType: 'json',
+            success: function (data) {
+                document.getElementById("product-row" + id).remove()
+                document.getElementById("product-hr" + id).remove()
+            }
+        })
+    }
+</script>
+{% endblock javascript %}
+{% endblock content %}

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Cart{% endblock title %}
+{% block content %}
+{% include 'wigits/_pagesbaner.html' %}
+{% load static %}
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="{% url 'myapp:index' %}">Home</a>
+    </li>
+    <li class="breadcrumb-item active">
+        <a href="{% url 'myapp:profile' %}">{{user.username}}</a>
+    </li>
+
+    <li class="breadcrumb-item active">Cart</li>
+</ol>
+<!---->
+<!-- banner -->
+<section class="ab-info-main py-md-5 py-4">
+    <div class="container py-md-3">
+        <div class="row">
+            <div class="side-bar col-lg-8">
+                 <h2>Payment Home</h2>
+                    {% if error %}
+                    <h3>{{ error }}</h3>
+                    {% endif %}
+                    <form method="post">
+                        {% csrf_token %}
+                      <!--  <label for="username">Username: </label>
+                        <input type="text" name="username" required>
+                        <label for="password">Password: </label>
+                        <input type="text" name="password" required>-->
+                        <label for="amount">Amount: </label>
+                        <input type="number" name="amount" value="100">
+                        <input type="submit" name="submit" value="Submit" required>
+                    </form>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+{% endblock content %}

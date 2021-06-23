@@ -1,0 +1,22 @@
+<div class="main-banner" id="home">
+        <!-- header -->
+        <header class="header">
+            <div class="container-fluid px-lg-5">
+                <!-- nav -->
+                {% include 'wigits/_navbar.html' %}
+                <!-- //nav -->
+            </div>
+        </header>
+        <!-- //header -->
+        <!--/banner-->
+        <div class="banner-info">
+            <p>Build your home with</p>
+            <h3 class="mb-4">5% OFF ON ALL PRODUCTS</h3>
+            <div class="ban-buttons">
+                <a href="{% url 'myapp:shop' %}" class="btn">Shop Now</a>
+                <a href="{% url 'myapp:about' %}" class="btn active">Read More</a>
+            </div>
+        </div>
+        <!--// banner-inner -->
+
+    </div>
