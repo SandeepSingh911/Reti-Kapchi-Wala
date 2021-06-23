@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% include 'wigits/_pagesbaner.html' %}
+
+    <!--//main-content-->
+    <!---->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href=" {% url 'myapp:index' %}">Home</a>
+        </li>
+        <li class="breadcrumb-item active">Register</li>
+    </ol>
+    <!---->
+    <!-- banner -->
+<section id="register" class="bg-light py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 mx-auto">
+          <div class="card">
+            <div class="card-body">
+              <!-- Alerts -->
+              {% include 'wigits/_alerts.html' %}
+              <form action="" method="POST">
+                  {% csrf_token %}
+                <div class="form-group">
+                  <label for="username">Username</label>
+                  <input type="text" name="username" class="form-control" required>
+                </div>
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="email" name="email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                  <label for="password2">Password</label>
+                  <input type="password" name="password" class="form-control" required>
+                </div>
+                <div class="form-group">
+                  <label for="password">Confirm Password</label>
+                  <input type="password" name="password2" class="form-control" required>
+                </div>
+                <input type="submit" value="Register" class="btn btn-secondary btn-block">
+                <br>
+                 <div class="text-center text-primary fw-bold"><small>Existing User ? <a href="{% url 'myapp:login' %}"
+                     class="text-danger">Login Now</a> </small></div>
+
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+    <!-- //contact -->
+  
+
+{% endblock content %}

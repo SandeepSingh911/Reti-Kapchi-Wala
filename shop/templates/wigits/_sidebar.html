@@ -1,0 +1,46 @@
+<div class="left-ads-display col-lg-3">
+                <div class="row">
+                    <div class="d-flex flex-column p-3 bg-light" style="width: 280px;">
+                        <div class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+                            Wellcome &nbsp;
+                            <span class="py-4 text-capitalize" >
+                               <strong> {{user.username}}</strong></span>
+                        </div>
+
+                        <ul class="nav nav-pills flex-column mb-auto">
+                            <li class="nav-item">
+                                <a href="{% url 'myapp:profile' %}"  aria-current="page"
+                                {% if 'profile' in request.path %} class ="nav-link active" {% else %} class="nav-link link-dark" {% endif %}>
+                                    Address
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'myapp:password_change' %}" aria-current="page"
+                                {% if 'password_change' in request.path %} class ="nav-link active" {% else %} class="nav-link link-dark" {% endif %}>
+                                    Change Password
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'myapp:myorders' %}" aria-current="page"
+                                {% if 'myorders' in request.path %} class ="nav-link active" {% else %} class="nav-link link-dark" {% endif %}>
+                                    My Orders
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'myapp:wishlist' %}" aria-current="page"
+                                {% if 'wishlist' in request.path %} class ="nav-link active" {% else %} class="nav-link link-dark" {% endif %}>
+                                    Wish List
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:{document.getElementById('logout').submit()}" class="nav-link link-dark">
+                                    Logout</a>
+                                        <form action="{% url 'myapp:logout' %}" method="POST" id="logout">
+                                         {% csrf_token %}
+                                        <input type="hidden">
+                                        </form></li>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>

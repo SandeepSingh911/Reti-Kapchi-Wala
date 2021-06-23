@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{user.username}}{% endblock title %}
+{% block content %}
+{% include 'wigits/_pagesbaner.html' %}
+{% load static %}
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="{% url 'myapp:index' %}">Home</a>
+    </li>
+    <li class="breadcrumb-item active">User Profile</li>
+    <li class="breadcrumb-item active">{{user.username}}</li>
+</ol>
+<!---->
+<!-- banner -->
+<section class="ab-info-main py-md-5 py-4">
+    <div class="container py-md-3">
+
+        <div class="row">
+
+            <!-- block left -->
+            {% include 'wigits/_sidebar.html' %}
+
+            <!-- //block left -->
+            <!-- block right -->
+
+            <div class="side-bar col-lg-9">
+                <div class="card">
+                    <span class="card-body"><strong>Address Delete</strong></span>
+                    <div class="card-body">
+                    
+                        <span> <strong> Name : {{address.name}}</strong></span>
+                        <div>
+                            <span> <strong>Address : </strong>{{address.Address}}</span><br>
+                            <span> <strong>City : </strong>{{address.city}}</span><br>
+                            <span> <strong>State : </strong>{{address.state}}</span><br>
+                            <span> <strong>Pincode : </strong>{{address.pincode}}</span>
+                        </div>
+                        <br>
+                        <form method="POST">
+                            {% csrf_token %}
+                            <a href="{% url 'myapp:profile'%}" class="btn btn-success shadow px-3 py-1 ms-4">Back</a>
+                            <input type="submit" value="confirm" class="btn btn-primary shadow px-3 py-1 ms-4">
+                        </form>
+                    </div>                   
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </div>
+</section>
+
+
+{% endblock content %}

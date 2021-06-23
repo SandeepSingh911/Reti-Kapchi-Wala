@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Cart{% endblock title %}
+{% block content %}
+{% include 'wigits/_pagesbaner.html' %}
+{% load static %}
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="{% url 'myapp:index' %}">Home</a>
+    </li>
+    <li class="breadcrumb-item active">
+        <a href="{% url 'myapp:profile' %}">{{user.username}}</a>
+    </li>
+
+    <li class="breadcrumb-item active">Cart</li>
+</ol>
+<!---->
+<!-- banner -->
+<section class="ab-info-main py-md-5 py-4">
+    <div class="container py-md-3">
+        <div class="row">
+            <div class="side-bar col-lg-8">
+                <h2>Callback Messsage: </h2>                    <br>
+                <h3> Checksum Verification: {{ message }} </h3> <br>
+                MID: {{ MID }}                                  <br>
+                TXNID: {{ TXNID }}                              <br>
+                ORDERID: {{ ORDERID }}                          <br>
+                BANKTXNID: {{ BANKTXNID }}                      <br>
+                TXNAMOUNT: {{ TXNAMOUNT }}                      <br>
+                CURRENCY: {{ CURRENCY }}                        <br>
+                <h3> STATUS: {{ STATUS }} </h3>                 <br>
+                RESPCODE: {{ RESPCODE }}                        <br>
+                RESPMSG: {{ RESPMSG }}                          <br>
+                TXNDATE: {{ TXNDATE }}                          <br>
+                GATEWAYNAME: {{ GATEWAYNAME }}                  <br>
+                BANKNAME: {{ BANKNAME }}                        <br>
+                BIN_NAME: {{ BIN_NAME }}                        <br>
+                PAYMENTMODE: {{ PAYMENTMODE }}                  <br>
+                CHECKSUMHASH: {{ CHECKSUMHASH }}
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+{% endblock content %}

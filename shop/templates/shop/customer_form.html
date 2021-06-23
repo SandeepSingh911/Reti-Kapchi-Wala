@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{user.username}}{% endblock title %}
+{% block content %}
+{% include 'wigits/_pagesbaner.html' %}
+{% load static %}
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="{% url 'myapp:index' %}">Home</a>
+    </li>
+    <li class="breadcrumb-item active">User Profile</li>
+    <li class="breadcrumb-item active">{{user.username}}</li>
+</ol>
+<!---->
+<!-- banner -->
+<section class="ab-info-main py-md-5 py-4">
+    <div class="container py-md-3">
+
+        <div class="row">
+
+            <!-- block left -->
+            {% include 'wigits/_sidebar.html' %}
+
+            <!-- //block left -->
+            <!-- block right -->
+
+            <div class="side-bar col-lg-9">
+                <div class="card">
+                    <div class="card-body">
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            <div class="form-group col-lg-9 mb-3">
+                                {% for fm in form %}
+                                 {{fm.label_tag}} {{fm}} {{fm.widgits}}
+                                {% endfor %}
+                            </div>
+                            <div class="col-lg-9 mb-3">
+                                <a href="{% url 'myapp:profile'%}" class="btn btn-success shadow px-3 py-1 ms-4">Back</a>
+                                <input type="submit" value="Update" class="btn btn-primary shadow px-3 py-1 ms-4">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </div>
+</section>
+
+
+{% endblock content %}

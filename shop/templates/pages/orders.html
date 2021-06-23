@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{user.username}}-orders{% endblock title %}
+{% block content %}
+{% include 'wigits/_pagesbaner.html' %}
+{% load static %}
+
+        <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{% url 'myapp:index' %}">Home</a>
+        </li>
+        <li class="breadcrumb-item active">
+            <a href="{% url 'myapp:profile' %}">{{user.username}}</a>
+        </li>
+        
+        <li class="breadcrumb-item active">My Orders</li>
+    </ol>
+    <!---->
+    <!-- banner -->
+<section class="ab-info-main py-md-5 py-4">
+        <div class="container py-md-3">
+            <!-- top Products -->
+            <div class="row">
+                <!-- product left -->
+                {% include 'wigits/_sidebar.html' %}
+
+                <div class="side-bar col-lg-9">
+
+                    
+                    <div class="card">
+                        <div class="card-body">
+                                <h3>Order Placed</h3>
+                                {% for item in order_placed %}
+                                <div class="row">
+                                    <div class="col-sm-3 text-center align-self-center">
+                                        <img src="{{item.product.image.url}}" alt="" srcset="" class="img-fluid img-thumbnail shadow-sm" height="150" width="150"> </div>
+                                        <div class="col-sm-9">
+                                            <div>
+                                                <h5>{{item.product.name}}</h5>
+                                                <p class="mb-2 text-muted small">Description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum quas, nihil vel velit sed, quos consequatur maiores odio libero eius est in mollitia quo minus dolorum culpa consectetur, ipsam unde!</p>
+                                                <div class="d-flex justify-content-between">
+                                                    <p class="mb-0"><span><strong>Quantity: {{item.quantity}}</strong></span></p>
+                                                    <p class="mb-0"><span><strong> ₹ {{item.product_cost}}</strong></span></p>
+                                                </div>
+                                                <div class="col-sm-9 fw-bold">
+                                                    <p>Order Status: {{item.status}}</p>
+
+                                                    {% if item.status == 'Pending' %}
+                                                        <div class="progress">
+                                                            <div class="progress-bar" role="progressbar" style="width:0%" 
+                                                                aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                            </div>
+                                                    {% endif %}
+
+                                                    {% if item.status == 'Accepted' %}
+                                                        <div class="progress">
+                                                            <div class="progress-bar bg-info" role="progressbar" style="width:20%" 
+                                                                aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                            </div>
+                                                    {% endif %}
+                                                    
+                                                    {% if item.status == 'Packed' %}
+                                                        <div class="progress">
+                                                            <div class="progress-bar bg-warning" role="progressbar" style="width:40%" 
+                                                                aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                            </div>
+                                                    {% endif %}
+
+                                                    {% if item.status == 'On The Way' %}
+                                                        <div class="progress ">
+                                                            <div class="progress-bar bg-primary" role="progressbar" style="width:70%" 
+                                                                aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                            </div>
+                                                    {% endif %}
+
+                                                    {% if item.status == 'Delivered' %}
+                                                        <div class="progress">
+                                                            <div class="progress-bar bg-success" role="progressbar" style="width:100%" 
+                                                                aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                            </div>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                     <hr>
+                                    </div>
+                                </div>
+                                {% endfor %} 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock content %}
