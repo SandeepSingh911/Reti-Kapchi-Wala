@@ -155,8 +155,8 @@ LOGIN_URL = 'myapp:login'
 
 
 #########################################################
-PAYTM_MERCHANT_ID = 'bwPiYb61773656943019'
-PAYTM_SECRET_KEY = 'yTJupBwnpWc4q%F7'
+PAYTM_MERCHANT_ID = '<Paytm Merchant Id'
+PAYTM_SECRET_KEY = '<Paytm Secrete Key>'
 PAYTM_WEBSITE = 'WEBSTAGING'
 PAYTM_CHANNEL_ID = 'WEB'
 PAYTM_INDUSTRY_TYPE_ID = 'Retail'
